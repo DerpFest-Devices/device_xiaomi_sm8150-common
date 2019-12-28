@@ -87,10 +87,8 @@ function configure_memory_parameters() {
     vmpres_file_min=$((minfree_5 + (minfree_5 - rem_minfree_4)))
     echo $vmpres_file_min > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
-    # Enable adaptive LMK for all targets &
-    # use Google default LMK series for all 64-bit targets >=2GB.
-    echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
-    echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
+    # Disable oom_reaper
+    echo 0 > /sys/module/lowmemorykiller/parameters/oom_reaper
 
     # Set allocstall_threshold to 0 for all targets.
     # Set swappiness to 100 for all targets
